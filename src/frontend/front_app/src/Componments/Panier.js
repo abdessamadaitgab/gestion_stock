@@ -4,6 +4,8 @@ import {Card,Table,ListGroup,Nav} from 'react-bootstrap';
 import ClientService from '../Services/ClientService';
 import PanierService from '../Services/PanierService';
 import authService from "../Services/authService";
+import { faVrCardboard } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
@@ -36,6 +38,13 @@ class Panier extends Component {
             this.setState({lignes: this.state.lignes.filter(ligne => ligne.id !== id)});
         });
     }
+    valider(id){
+        PanierService.validerPanier(id).then(res=>{
+            this.props.history.push('/admin');
+        });
+
+
+    }
   
    
   
@@ -49,15 +58,16 @@ class Panier extends Component {
   
         return (
 
+    
+    < Card className={"border border-dark bg-dark text-white"} style={{ width: '70rem' , height:'50rem' }}>
+                      <br/> <br/>
 
-    
-    
-    < Card className={"border border-dark bg-dark text-white"}>
-    <Card.Header>  Clients List</Card.Header>
+   <br/> <br/>
+    <Card.Header><FontAwesomeIcon icon={faVrCardboard}/> Panier List</Card.Header>
 <Card.Body>
-
-
 <div className="row">
+
+
    <Table  bordered hover striped variant="dark">
        <thead>
            <tr>
@@ -65,6 +75,8 @@ class Panier extends Component {
                <th>type</th>
                <th>qte</th>
                <th>Prix</th>
+               <th>Prix total</th>
+
                <th>Actions</th>
            </tr>
 
@@ -77,6 +89,8 @@ class Panier extends Component {
                        <td> {ligne.product.gamme} </td>
                        <td> {ligne.product.type} </td>
                        <td> {ligne.qnt} </td>
+                       <td> {ligne.product.prix} </td>
+
                        <td> {ligne.qnt* ligne.product.prix} </td>
 
 <td>
@@ -90,13 +104,13 @@ class Panier extends Component {
            }
        </tbody>
    </Table> 
+   </div>
    <center>
    <div className="col">
-   <button className="btn btn-success" onClick={this.AddUser}> Valider</button>
+   <button className="btn btn-success"  onClick={ () => this.valider(this.state.id)} > Valider</button>
 </div>
 </center>
 
-</div>
 </  Card.Body>
 
 </Card>

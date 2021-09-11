@@ -18,7 +18,7 @@ class Footer extends Component {
             <Navbar fixed="bottom" bg="dark" variant="dark">
             <Container>
             <Col lg={12} className="text-center text-muted">
-            <div>{fullYear}-{fullYear+1},All Rights Reserved by Master MIOLA</div> 
+            <div>{fullYear}-{fullYear+1},@copyright All Rights Reserved by Master MIOLA</div> 
             </Col>
              </Container>
              </Navbar>);

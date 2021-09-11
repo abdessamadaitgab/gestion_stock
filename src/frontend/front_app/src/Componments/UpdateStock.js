@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import ClientService from '../Services/ClientService';
 import StockService from '../Services/StockService';
+import {Card,Table,ListGroup,Nav} from 'react-bootstrap';
+
 
 
 class UpdateClient extends Component {
@@ -48,7 +50,7 @@ class UpdateClient extends Component {
                  <br></br>
                    <div className = "container">
                         <div className = "row">
-                            <div className = "card col-md-6 offset-md-3 offset-md-3">
+                        < Card className={"border border-dark bg-dark text-white"} style={{ width: '30rem' , height:'50rem' }}>
                                 <h3 className="text-center">Update Stock</h3>
                                 <div className = "card-body">
                                     <form>
@@ -57,14 +59,19 @@ class UpdateClient extends Component {
                                             <input placeholder="Qte" name="Qte" className="form-control" 
                                                 value={this.state.qte} onChange={this.changeQte}/>
                                         </div>
-        
+                                        <br/>
+                                        <br/>
+                                        <center>
 
                                         <button className="btn btn-success" onClick={this.updateStock}>Save</button>
-                                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} style={{marginLeft: "10px"}}>Cancel</button>
+                                        <br/>
+                                        
+                                   
+                                        <button className="btn btn-danger" onClick={this.cancel.bind(this)} >Cancel</button>
+                                        </center>
                                     </form>
                                 </div>
-                            </div>
-                        </div>
+</Card>                        </div>
 
                    </div>
                 

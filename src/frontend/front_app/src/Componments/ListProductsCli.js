@@ -79,6 +79,9 @@ class ListClients extends Component {
         return (
          
             <div>
+               <br/>
+                <br/>                <br/> <br/>
+
   <div className="col">
 
 <Nav justify variant="tabs" defaultActiveKey="/home">
@@ -86,7 +89,7 @@ class ListClients extends Component {
 <Nav.Link href="/user">Espace Produits</Nav.Link>
 </Nav.Item>
 <Nav.Item>
-<Nav.Link href="/panierCli">Panier</Nav.Link>
+<Nav.Link href="/panierCli">Consulter Panier</Nav.Link>
 </Nav.Item>
 </Nav>      
 </div>           

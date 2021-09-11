@@ -11,6 +11,10 @@ class PanierService{
     deleteLigne(Id){
         return axios.delete(PRODUCT_API_BASE_URL + '/' + Id);
     }
+    validerPanier(id){
+        return axios.post(PRODUCT_API_BASE_URL+ '/users/valider/' + id,);
+
+    }
  
 }
 export default new PanierService()

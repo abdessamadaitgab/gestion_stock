@@ -22,6 +22,9 @@ class ListCommandes extends Component {
     render() {
         return (
             <div>
+                 <br/>
+                <br/>                <br/> <br/>
+
                                    <div className="col">
 
 <Nav justify variant="tabs" defaultActiveKey="/home">
@@ -40,11 +43,10 @@ class ListCommandes extends Component {
 </Nav.Item>
 </Nav>
 </div>
-                  <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header>  Commandes List</Card.Header>
+                  <Card className={"border border-dark bg-dark text-white"} style={{ width: '70rem' }}>
+                <Card.Header>  <center><h1>Commande List</h1></center> </Card.Header>
                 <Card.Body>
 
-                <div className="row">
                     <Table  bordered hover striped variant="dark">
                         <thead>
                             <tr>
@@ -52,6 +54,8 @@ class ListCommandes extends Component {
                                 <th>nom d'utilisateur</th>
                                 <th>prenom d'utilisateur</th>
                                 <th>mobile </th>
+                                <th>email </th>
+
                                 <th>Actions</th>
 
                             </tr>
@@ -70,6 +74,9 @@ class ListCommandes extends Component {
                                         </td>
                                         <td>{commande.user.mobile}</td>
                                         <td>
+                                        {commande.user.email} 
+                                        </td>
+                                        <td>
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.deleteCommande(commande.id)} className="btn btn-danger">Delete </button>
 
                                         </td>
@@ -82,7 +89,6 @@ class ListCommandes extends Component {
                         </tbody>
                     </Table>
 
-                </div>
                 </Card.Body>
 
                 </Card>

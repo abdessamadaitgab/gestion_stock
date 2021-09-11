@@ -47,6 +47,7 @@ class ListClients extends Component {
         CommandeService.createCommandeUser(user,id).then(res=>{
             this.props.history.push('/products');
         });
+        
        
        
 
@@ -56,6 +57,10 @@ class ListClients extends Component {
     render() {
         return (
             <div>
+                <br/>
+                <br/>
+                <br/> <br/>
+
                                 <div className="col">
 
                                 <Nav justify variant="tabs" defaultActiveKey="/home">
@@ -79,23 +84,19 @@ class ListClients extends Component {
               
              
 <Card className={"border border-dark bg-dark text-white"}>
-<Card.Header>  Clients List</Card.Header>
+<Card.Header>  <center><h1>Clients List</h1></center> </Card.Header>
                 <Card.Body>
-
-                <div className="col">
+                <div className="col" align="right">
                     <button className="btn btn-primary" onClick={this.AddUser}> Add User</button>
                 </div>
-                <div className="row">
                     <Table  bordered hover striped variant="dark">
                         <thead>
                             <tr>
                                 <th> nom</th>
                                 <th>prenom</th>
-                                <th>mobile</th>
                                 <th>email</th>
                                 <th>Actions</th>
                             </tr>
-
                         </thead>
                         <tbody>
                             {
@@ -104,25 +105,20 @@ class ListClients extends Component {
                                     <tr key ={client.id}>
                                         <td> {client.nom} </td>
                                         <td> {client.prenom} </td>
-                                        <td> {client.mobile} </td>
                                         <td>{client.email}</td>
                                         <td>
                                         <button onClick={ () => this.editUser(client.id)} className="btn btn-info">Update </button>
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.deleteUser(client.id)} className="btn btn-danger">Delete </button>
                                         <button style={{marginLeft: "10px"}} onClick={ () => this.viewUser(client.id)} className="btn btn-secondary">View </button>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.createCommande(client.id)} className="btn btn-light">CreateCommande </button>
-                                        <button style={{marginLeft: "10px"}} onClick={ () => this.viewPanel(client.id)} className="btn btn-light">ViewPenel </button>
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.createCommande(client.id)} className="btn btn-warning">Commander </button>
+                                        <button style={{marginLeft: "10px"}} onClick={ () => this.viewPanel(client.id)} className="btn btn-light">Panier </button>
 
                                         </td>
-
-
-
                                     </tr>
                                 )
                             }
                         </tbody>
                     </Table>
-</div>
 </Card.Body>
 
 </Card>

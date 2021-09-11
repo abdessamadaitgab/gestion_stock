@@ -22,11 +22,13 @@ import org.springframework.web.bind.annotation.RestController;
 import com.project.stk.Exception.ResourceNotFoundException;
 import com.project.stk.model.Commande;
 import com.project.stk.model.Panier;
+import com.project.stk.model.PanierFinale;
 import com.project.stk.model.Product;
 import com.project.stk.model.Stock;
 import com.project.stk.model.user;
 import com.project.stk.repository.CommandeRepository;
 import com.project.stk.repository.PanierRepository;
+import com.project.stk.repository.PanierfinaleRepo;
 import com.project.stk.repository.ProduitRepository;
 import com.project.stk.repository.StockRepo;
 import com.project.stk.repository.userRepository;
@@ -50,6 +52,10 @@ public class AdminController {
     private PanierRepository panierrepo;
     @Autowired
     private StockRepo stockrepo;
+    @Autowired
+    private PanierfinaleRepo pfrepo;
+    
+   private static PanierFinale pf=new PanierFinale();
     
     
     
@@ -187,6 +193,29 @@ public class AdminController {
 	    public List<Panier> getPanierUserById(@PathVariable Long id) {
 return panierrepo.findByUserId(id);
 }
+		@PreAuthorize("hasRole('ADMIN')")
+	    @PostMapping("/panier/users/valider/{id}")
+	    public Boolean validerPanier(@PathVariable Long id ) {
+			int i;
+         List<Panier> l=getPanierUserById(id);
+         System.out.print(l.size());
+         
+         for( i=0;i<l.size();i++) {
+             pf.setId(l.get(i).getId());
+             pf.setProduct(l.get(i).getProduct());
+             pf.setCommande(l.get(i).getCommande());
+             pf.setQnt(l.get(i).getQnt());
+             pf.setUser(l.get(i).getUser());
+            pfrepo.save(pf);
+            
+            ResponseEntity<Map<String, Boolean>>r=deletePanier(l.get(i).getId());             
+         }
+         return true;
+            }
+	    
+	    
+	    
+	    
 	    @PreAuthorize("hasRole('ADMIN')")
 	    @GetMapping("/panier/user/{id}")
 	    public List<Panier> getPanierByIdUser(@PathVariable Long id) {
@@ -194,6 +223,8 @@ return panierrepo.findByUserId(id);
 
 	    	return panierrepo.findByCommandeId(c.getId());
 	    }
+	    
+	    
 	    
 	    // get commande
 	    @GetMapping("/commandes/{id}")

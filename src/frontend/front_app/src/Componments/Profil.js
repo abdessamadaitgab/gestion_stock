@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { Redirect } from "react-router-dom";
 import authService from "../Services/authService";
 import Card from 'react-bootstrap/Card'
+import img from '../images/profil.jpeg'
 
 
 export default class Profile extends Component {
@@ -36,35 +37,22 @@ export default class Profile extends Component {
     bg="LIGHT"
     
     text="LIGHT"
-    style={{ width: '18rem' }}
+    style={{ width: '40rem' }}
     className="mb-2"
   >
-        {(this.state.userReady) ?
-        <div>
-        <header className="jumbotron">
-          <h3>
-            <strong>{currentUser.username}</strong> Profile
-          </h3>
-        </header>
-        <p>
-          <strong>Token:</strong>{" "}
-          {currentUser.accessToken.substring(0, 20)} ...{" "}
-          {currentUser.accessToken.substr(currentUser.accessToken.length - 20)}
-        </p>
-        <p>
-          <strong>Id:</strong>{" "}
-          {currentUser.id}
-        </p>
-        <p>
-          <strong>Email:</strong>{" "}
-          {currentUser.email}
-        </p>
-        <strong>Authorities:</strong>
-        <ul>
-          {currentUser.roles &&
-            currentUser.roles.map((role, index) => <li key={index}>{role}</li>)}
-        </ul>
-      </div>: null}
+          <Card.Img variant="top" src={img} />
+    <Card.Body>
+      <Card.Title>{ currentUser.username}</Card.Title>
+      <Card.Text>
+      { currentUser.email}
+      <br/>
+      {currentUser.name}
+      </Card.Text>
+    </Card.Body>
+    <Card.Footer>
+      <small className="text-muted">Last updated 1 mins ago</small>
+    </Card.Footer>
+
       </Card>
       </center>
       </div>

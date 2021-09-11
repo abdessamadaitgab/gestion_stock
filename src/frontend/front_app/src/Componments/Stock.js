@@ -28,10 +28,13 @@ class UpdateClient extends Component {
     render() {
         return (
             <div>
+                 <br/>                <br/> <br/>
+
+                <br/>
              
                                 <div className="col">
 
-                                <Nav justify variant="tabs" defaultActiveKey="/home">
+                                <Nav justify variant="tabs" defaultActiveKey="/home" fixed>
   <Nav.Item>
     <Nav.Link href="/admin/users">Espace users</Nav.Link>
   </Nav.Item>
@@ -53,14 +56,11 @@ class UpdateClient extends Component {
         </div>
         
 
-                 <br></br>
-                 
-                 <Card className={"border border-dark bg-dark text-white"}>
-                <Card.Header>  Stocks List</Card.Header>
+                 <Card className={"border border-dark bg-dark text-white"} style={{ width: '70rem' }}>
+                <Card.Header>  <center><h1>Stock List</h1></center> </Card.Header>
                 <Card.Body>
-
-                <div className="row">
-                    <Table  bordered hover striped variant="dark">
+                    <div className="row">
+                    <Table  bordered hover striped variant="dark" size="500">
                         <thead>
                             <tr>
                                 <th> type</th>
@@ -95,12 +95,11 @@ class UpdateClient extends Component {
                             }
                         </tbody>
                     </Table>
+                    </div>
 
-                </div>
                 </Card.Body>
 
                 </Card>
-                
                 
             </div>
         );

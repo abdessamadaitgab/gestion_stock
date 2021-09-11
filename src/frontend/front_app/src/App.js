@@ -21,13 +21,21 @@ import {Link } from "react-router-dom";
 import authService from './Services/authService';
 import ListProduct from './Componments/ListProducts.jsx';
 import ListProductCli from './Componments/ListProductsCli';
+import logo2 from './images/logo.png'
+import logo3 from './images/logo2.png'
+import logo4 from './images/logo4.png'
+import capture  from './images/Capture.png'
+
 
 import Stock from './Componments/Stock'
 import UpdateStock from './Componments/UpdateStock'
 import ProductDetails from './Componments/ProductDetails';
 import Panier from './Componments/Panier';
 import PanierCli from './Componments/PanierCli';
+
 import CommandeService from './Services/CommandeService';
+import contactus from './Componments/contactus';
+import aboutus from './Componments/aboutus';
 
 
 
@@ -85,22 +93,25 @@ class App extends Component {
     const { currentUser, showModeratorBoard, showAdminBoard } = this.state;
 
   return (
-    <div >
-           <nav className="navbar navbar-expand navbar-dark bg-dark">
+   <div >
+     
+         <div  className="justify-content-center" >
+           <nav className="navbar navbar-expand navbar-dark bg-dark justify-content-center fixed-top">
           <Link to={"/"} className="navbar-brand">
+            <img src={capture} height="60" width="120"/>
+            <font color="gold">
 
-Gestion de STOCK          </Link>
+SHAH TISSU SHOP </font>    </Link>
           <div className="navbar-nav mr-auto">
             <li className="nav-item">
               <Link to={"/home"} className="nav-link">
                 Home
               </Link>
             </li>
-
-            {showModeratorBoard && (
+            {currentUser && (
               <li className="nav-item">
-                <Link to={"/mod"} className="nav-link">
-                  Moderator Board
+                <Link to={"/user"} className="nav-link">
+                  User Interface
                 </Link>
               </li>
             )}
@@ -113,13 +124,7 @@ Gestion de STOCK          </Link>
               </li>
             )}
 
-            {currentUser && (
-              <li className="nav-item">
-                <Link to={"/user"} className="nav-link">
-                  User
-                </Link>
-              </li>
-            )}
+          
           </div>
 
           {currentUser ? (
@@ -130,10 +135,25 @@ Gestion de STOCK          </Link>
                 </Link>
               </li>
               <li className="nav-item">
+                <Link to={"/contactus"} className="nav-link">
+                  Contact Us
+                </Link>
+              </li>
+
+              <li className="nav-item"  >
+                  <a href="https://www.google.com/maps/@34.0298022,-6.7790329,16z" className="nav-link"> Map</a>
+              </li>
+              <li className="nav-item">
+                <Link to={"/aboutus"} className="nav-link">
+AboutUs                </Link>
+              </li>
+              <li className="nav-item">
                 <a href="/login" className="nav-link" onClick={this.logOut}>
                   LogOut
                 </a>
               </li>
+
+              
             </div>
           ) : (
             <div className="navbar-nav ml-auto">
@@ -148,9 +168,11 @@ Gestion de STOCK          </Link>
                   Sign Up
                 </Link>
               </li>
+
             </div>
           )}
         </nav>
+        </div>
 
         <div className="container mt-3">
           <Switch>
@@ -180,6 +202,12 @@ Gestion de STOCK          </Link>
                       <Route exact  path = "/admin/update-stock/:id" component = {UpdateStock}/>
                       <Route exact  path = "/panier" component = {Panier}/>
                       <Route exact  path = "/panierCli" component = {PanierCli}/>
+                      <Route exact  path = "/contactus" component = {contactus}/>
+                      <Route exact  path = "/aboutus" component = {aboutus}/>
+
+
+
+
 
 
 

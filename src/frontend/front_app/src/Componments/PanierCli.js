@@ -5,6 +5,8 @@ import ClientService from '../Services/ClientService';
 import PanierService from '../Services/PanierService';
 import authService from "../Services/authService";
 import { Prompt } from 'react-router-dom';
+import { faVrCardboard } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 
 
@@ -36,6 +38,11 @@ class PanierCli extends Component {
             this.setState({lignes: this.state.lignes.filter(ligne => ligne.id !== id)});
         });
     }
+    valider(id){
+        let panier={};
+        PanierService.validerPanier(id);
+
+    }
    
    
   
@@ -50,28 +57,31 @@ class PanierCli extends Component {
         return (
             
 <div>
+<br/>                <br/> <br/>
+
+                <br/>
 <div className="col">
 
 <Nav justify variant="tabs" defaultActiveKey="/home">
 <Nav.Item>
-<Nav.Link href="/user">Espace Produits</Nav.Link>
+<Nav.Link href="/user" >Espace Produits</Nav.Link>
 </Nav.Item>
 <Nav.Item>
-<Nav.Link href="/panierCli">Panier</Nav.Link>
+<Nav.Link href="/panierCli">Consulter Panier</Nav.Link>
 </Nav.Item>
 </Nav>      
 </div>   
 <br/>
     
     
-    < Card className={"border border-dark bg-dark text-white"}>
-    <Card.Header>  Panel List</Card.Header>
+    < Card className={"border border-dark bg-dark text-white"} style={{ width: '70rem' , height:'50rem' }}>
+    <Card.Header> <h1><FontAwesomeIcon icon={faVrCardboard}/>Panier List </h1></Card.Header>
 <Card.Body>
 
 <br/>
-
-
 <div className="row">
+
+
    <Table  bordered hover striped variant="dark">
        <thead>
            <tr>
@@ -92,7 +102,7 @@ class PanierCli extends Component {
                    <tr key ={ligne.id}>
                        <td> {ligne.product.gamme} </td>
                        <td> {ligne.product.type} </td>
-                       <td> {ligne.id} </td>
+                       <td> {ligne.qnt} </td>
 
                        <td>{ligne.product.prix}</td>
                        <td> {ligne.qnt* ligne.product.prix} </td>
@@ -109,8 +119,12 @@ class PanierCli extends Component {
            }
        </tbody>
    </Table> 
-
+   </div>
+   <center>
+   <div className="col">
 </div>
+</center>
+
 </  Card.Body>
 
 </Card>
